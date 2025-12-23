@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>System Notice</title>
+<style>
+    html, body {
+        margin: 0;
+        padding: 0;
+        background: black;
+        color: #00ff00;
+        font-family: "Courier New", monospace;
+        height: 100%;
+        overflow: hidden;
+    }
+    .screen {
+        padding: 30px;
+        max-width: 900px;
+        margin: auto;
+        font-size: 18px;
+        line-height: 1.5;
+    }
+    .red {
+        color: red;
+        font-weight: bold;
+    }
+    .big {
+        font-size: 32px;
+        margin: 20px 0;
+    }
+    .blink {
+        animation: blink 1s infinite;
+    }
+    @keyframes blink {
+        50% { opacity: 0; }
+    }
+</style>
+</head>
+<body>
+
+<div class="screen" id="screen">
+    INITIALIZING SECURE SESSION...<br><br>
+</div>
+
+<script>
+const screen = document.getElementById("screen");
+
+function writeLine(text, delay = 600) {
+    return new Promise(resolve => {
+        setTimeout(() => {
+            screen.innerHTML += text + "<br>";
+            window.scrollTo(0, document.body.scrollHeight);
+            resolve();
+        }, delay);
+    });
+}
+
+async function startPrank() {
+    await writeLine("CONNECTING TO FEDERAL NETWORK...");
+    await writeLine("ACCESS GRANTED.");
+    await writeLine("");
+    await writeLine("SCANNING DEVICE...");
+    await writeLine("⚠️ ILLEGAL ACTIVITY DETECTED ⚠️");
+    await writeLine("");
+    await writeLine("LOCKING SYSTEM...");
+    await writeLine("UPLOADING LOGS...");
+    await writeLine("");
+
+    await writeLine("<span class='red big'>THIS DEVICE HAS BEEN SEIZED</span>", 1000);
+    await writeLine("BY THE FEDERAL BUREAU OF INVESTIGATION", 800);
+    await writeLine("UNITED STATES DEPARTMENT OF JUSTICE", 800);
+    await writeLine("");
+    await writeLine("IP ADDRESS: 192.168.1.42");
+    await writeLine("LOCATION: [REDACTED]");
+    await writeLine("CASE ID: FBI-88291-A");
+    await writeLine("");
+
+    let countdown = 5;
+    while (countdown > 0) {
+        await writeLine(
+            `<span class="blink red">AGENTS DISPATCHED — ARRIVAL IN ${countdown}...</span>`,
+            1000
+        );
+        countdown--;
+    }
+
+    await writeLine("");
+    await writeLine("your device hacked successfully", 1200);
+    await writeLine("This page ditected your data.");
+    await writeLine("FBI.tracking.hacking.");
+    await writeLine("Your account has banned successfully");
+}
+
+startPrank();
+</script>
+
+</body>
+</html>
